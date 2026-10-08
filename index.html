@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#fff4d9">
+  <meta name="description" content="好きな1文字が車体になる！文字の形から性能が決まる、3周のトイ風ブラウザレース。">
+  <title>文字サーキットレース | ONE TAKE GAME #004</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <main id="app" aria-live="off">
+    <section id="titleScreen" class="screen title-screen">
+      <div class="brand"><span class="brand-dot"></span> ONE TAKE GAME <b>#004</b></div>
+      <header class="hero">
+        <h1>文字<span>サーキット</span>レース</h1>
+        <p>好きな1文字を選んで、<strong>3周レースで1位</strong>を目指そう！</p>
+      </header>
+      <div class="setup-card">
+        <div class="field-head"><label for="glyphInput">あなたのマシン</label><span>1文字を入力</span></div>
+        <div class="input-row"><input id="glyphInput" type="text" value="猫" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="inputError"><div class="field-note">好きな文字で<br>レースしよう！</div></div>
+        <p id="inputError" class="field-error" role="alert" aria-live="polite"></p>
+        <div class="preview-slab"><canvas id="previewCanvas" width="340" height="118" aria-label="文字の形状に合わせた4つのタイヤ付き車体のプレビュー"></canvas><span class="preview-tag">TOP VIEW</span></div>
+        <div class="color-head"><span>BODY COLOR</span><span id="colorName">あか</span></div>
+        <div id="colorOptions" class="colors" role="group" aria-label="車体カラー"></div>
+        <div class="stats-head">文字の形から決まる性能 <span>SHAPE POWER</span></div>
+        <div id="stats" class="stats" aria-live="polite"></div>
+      </div>
+      <div class="entry-card"><div class="entry-label">NEXT RACE <span id="courseHint">COURSE A · スピード</span></div><div class="entrants"><div class="entrant you"><span>PLAYER</span><b id="entryPlayer">猫</b></div><div class="vs">VS</div><div class="entrant"><span>CPU 1</span><b id="entryCpu1">山</b></div><div class="entrant"><span>CPU 2</span><b id="entryCpu2">金</b></div><div class="entrant"><span>CPU 3</span><b id="entryCpu3">！</b></div></div></div>
+      <button id="startButton" class="primary-button">START <span>▶</span></button>
+      <div class="title-foot"><span>タップで BOOST！ 1レース3回</span><button class="mute-button" data-mute type="button" aria-label="音声をオンにする">🔇 OFF</button></div>
+    </section>
+
+    <section id="raceScreen" class="screen race-screen hidden" aria-label="レース">
+      <div class="race-top"><div class="race-hud-primary"><span id="placeBadge">4<small>位</small></span><div><b id="lapLabel">LAP 1 / 3</b><span id="timeLabel">TIME 00:00.00</span></div></div><button class="mute-button" data-mute type="button" aria-label="音声をオンにする">🔇 OFF</button></div>
+      <div id="raceStage" class="race-stage" aria-label="レースコース。ここをタップするとBOOSTします"><canvas id="raceCanvas" width="420" height="570" aria-label="見下ろし型文字車レース"></canvas><div id="countdown" class="countdown" aria-live="assertive"></div><div id="raceToast" class="race-toast"></div></div>
+      <div class="race-bottom"><div id="standings" class="standings" aria-label="現在の順位"></div><button id="boostButton" class="boost-button" type="button"><span>⚡ BOOST</span><b id="boostCount">× 3</b></button></div>
+      <div class="race-caption"><span id="raceCourse">COURSE A</span><span>コースをタップしてもBOOST</span></div>
+    </section>
+
+    <section id="resultScreen" class="screen result-screen hidden" aria-label="レース結果">
+      <div class="brand"><span class="brand-dot"></span> ONE TAKE GAME <b>#004</b></div>
+      <div class="result-heading"><span id="resultKicker">FINISH!</span><h2>RESULT</h2><p id="resultSubtitle">3周レース終了！</p></div>
+      <div id="resultPodium" class="result-podium"></div>
+      <div id="resultStandings" class="result-standings"></div>
+      <div class="result-details"><div><span>PLAYER</span><strong id="resultPlace">2nd</strong></div><div><span>TOTAL TIME</span><strong id="resultTime">00:43.02</strong></div><div><span>BEST LAP</span><strong id="resultLap">00:13.76</strong></div></div>
+      <p id="recordLabel" class="record-label"></p>
+      <button id="retryButton" class="primary-button">もう一回 <span>↻</span></button>
+      <button id="changeButton" class="secondary-button">文字を変える</button>
+      <div class="title-foot"><span id="allTimeBest">歴代 BEST LAP --:--.--</span><button class="mute-button" data-mute type="button" aria-label="音声をオンにする">🔇 OFF</button></div>
+    </section>
+  </main>
+</body>
+</html>
